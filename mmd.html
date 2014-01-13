@@ -72,18 +72,48 @@
 
         <p>ダウンロードしてきたファイルをUnityにドラッグ＆ドロップ(以下、D＆D)する。</br>
            しばらくすると、東北ずん子 公式服モデル.MMD4Mecanim.assetが自動生成されました。</br>
-          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo03.png?raw=true" alt="MMD4Mecanim.asset" style="text-align:center;"></br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo03.png?raw=true" alt="MMD4Mecanim.asset"></br>
            </br>
            モーションは<a href="http://www.nicovideo.jp/watch/sm13350648">こちら</a>からお借りしました。</br>
            同じようにD＆Dし、追加します。</br>
            その後、東北ずん子 公式服モデル.MMD4Mecanim.assetのInspectorから、</br>
            VMDという項目にD＆Dします。</br>
-          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo04.png?raw=true" alt="addAnimation" style="text-align:center;"></br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo04.png?raw=true" alt="addAnimation"></br>
           </br>
           またもや何かが自動生成されました。</br>
-          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo05.png?raw=true" alt="ChangeConversionAnimation" style="text-align:center;"></br>
-           他モーションでも出来るので、お好きなモーションで踊らせてあげましょう！</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo05.png?raw=true" alt="ChangeConversionAnimation"></br>
+          </br>
+          あとは生成されたfbx形式のモデルを、シーン上に配置します。</br>
+          Projectウィンドウから、HierarchyにD＆Dで追加出来ます。</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo06.png?raw=true" alt="addMMD"></br>
+          </br>
+          やっと表示出来ました！</br>
         </p>
+
+        </br>
+        <h4>・実際にアニメーションさせてみる</h4>
+        <p>
+         次に、追加したモデルをアニメーションさせていきます。</br>
+        </p>
+        <p>
+          Projectウィンドウから任意の場所で、右クリックし、Create > Animator Controller で追加します。</br>
+          これはアニメーションを制御するものになります。</br>
+          Hierarchyのモデルをクリックし、InspectorビューのAnimatorの中に先ほど作成したAnimator Controllerを追加します。</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo07.png?raw=true" alt="Animator"></br>
+          </br>
+        </p>
+
+        <p>
+          次に、Animator Controllerをダブルクリックし、fbx形式で生成されたモデル内のモーションをD＆Dで追加していきます。</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo08.png?raw=true" alt="addMotion"></br>
+          </br>
+          再生すると、動いてくれました！</br>
+          もっと眺めていたいところですが、どんどん進めていきます。</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo09.png?raw=true" alt="PlayAnimation"></br>
+          </br>
+           ちなみに、他モーションでも出来るので、お好きなモーションで踊らせてあげましょう！</br>
+        </p>
+
 
 
       </section>
