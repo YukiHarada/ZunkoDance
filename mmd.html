@@ -114,7 +114,29 @@
            ちなみに、他モーションでも出来るので、お好きなモーションで踊らせてあげましょう！</br>
         </p>
 
+        <p>
+          このままでは、再生と同時にアニメーションしてしまうので、アニメーションを制御する必要があります。</br>
+          先ほど作成したAnimator Controllerに、状態遷移を追加していきます。</br>
+          左下のParametersの"+"ボタンを押し、bool型で2つ作成しました。</br>
+          (名前は何でも良いですが、danceとstopにしました)</br>
+        </p>
+        <p>
+          あとは、どんな状態でどこに遷移するのかの追加していきます。</br>
+          Animatorのモーション名で右クリックし、Make Transitionを選択。</br>
+          するとカーソルに矢印がついてくるようになります。</br>
+          あとは他のモーション名の上でクリックで、線を引くことが出来ます。</br>
+          矢印をクリックすると、InspectorのConditionsから遷移条件を指定することが出来ます。</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo10.png?raw=true" alt="Transition State"></br>
+          </br>
+        </p>
 
+        <p>
+          あとは忘れずに、初期状態でダンスしないようにするために、初期状態にしたいモーション名で右クリックし、Set As Defaultで、初期設定を変更しておきます。</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo11.png?raw=true" alt="SetDefault"></br>
+          </br>
+
+          これでスクリプトからも制御しやすいようになりました。</br>
+        </p>
 
       </section>
     </div>
