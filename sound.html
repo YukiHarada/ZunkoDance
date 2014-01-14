@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="UnityでOculusとKinectを使った課題 : " />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>UnityでOculusとKinectを使った課題</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/YukiHarada/ZunkoDance">View on GitHub</a>
+
+          <h1 id="project_title">UnityでOculusとKinectを使った課題</h1>
+          <h2 id="project_tagline"></h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/YukiHarada/ZunkoDance/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/YukiHarada/ZunkoDance/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
+          <a name="subtitle" class="anchor" href="#subtitle"><span class="octicon octicon-link"></span></a>
+          手を叩くことで音声を再生する
+        </h3>
+        </br>
+
+        <p>ここでは、Unity上でKinectから読み取った骨格情報を用いて、</br>
+           手を叩いた時に音を鳴らすようにします。</br>
+        </p>
+
+        </br>
+        <h4>・音を鳴らす準備</h4>
+        <p>音を鳴らすにはAudio Listener(音を聞き取る側)と、Audio Source(音を鳴らす側)が必要になります。</p>
+        <p>今回は手を叩いた時に、音を鳴らすようにするため、</br>
+           右手または左手にAudio Sourceをつけます。</br>
+           (今回は右手につけました。)</br>
+           <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo13.png?raw=true" alt="selectRightHand">
+           <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo14.png?raw=true" alt="addAudioSource">
+        </p>
+        <p>
+        </p>
+
+        <p>すると、Assetsにこのようなフォルダが追加されます。</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo02.png?raw=true" alt="MMD4Mecanim" style="text-align:center;">
+        </p>
+
+        </br>
+        <h4>・MMDモデルを取り込む</h4>
+        <p>今回は東北ずん子の和服バージョンを使います。</br>
+          (Facebookで宣言しちゃったしね！ちゃんと使ったよ！)</br>
+          </br>
+          <a href="http://zunko.jp/con_illust.html">東北ずん子公式サイト</a>
+          </br>
+        </p>
+
+        <p>ダウンロードしてきたファイルをUnityにドラッグ＆ドロップ(以下、D＆D)する。</br>
+           しばらくすると、東北ずん子 公式服モデル.MMD4Mecanim.assetが自動生成されました。</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo03.png?raw=true" alt="MMD4Mecanim.asset"></br>
+           </br>
+           モーションは<a href="http://www.nicovideo.jp/watch/sm13350648">こちら</a>からお借りしました。</br>
+           同じようにD＆Dし、追加します。</br>
+           その後、東北ずん子 公式服モデル.MMD4Mecanim.assetのInspectorから、</br>
+           VMDという項目にD＆Dします。</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo04.png?raw=true" alt="addAnimation"></br>
+          </br>
+          またもや何かが自動生成されました。</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo05.png?raw=true" alt="ChangeConversionAnimation"></br>
+          </br>
+          あとは生成されたfbx形式のモデルを、シーン上に配置します。</br>
+          Projectウィンドウから、HierarchyにD＆Dで追加出来ます。</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo06.png?raw=true" alt="addMMD"></br>
+          </br>
+          やっと表示出来ました！</br>
+        </p>
+
+        </br>
+        <h4>・実際にアニメーションさせてみる</h4>
+        <p>
+         次に、追加したモデルをアニメーションさせていきます。</br>
+        </p>
+        <p>
+          Projectウィンドウから任意の場所で、右クリックし、Create > Animator Controller で追加します。</br>
+          これはアニメーションを制御するものになります。</br>
+          Hierarchyのモデルをクリックし、InspectorビューのAnimatorの中に先ほど作成したAnimator Controllerを追加します。</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo07.png?raw=true" alt="Animator"></br>
+          </br>
+        </p>
+
+        <p>
+          次に、Animator Controllerをダブルクリックし、fbx形式で生成されたモデル内のモーションをD＆Dで追加していきます。</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo08.png?raw=true" alt="addMotion"></br>
+          </br>
+          再生すると、動いてくれました！</br>
+          もっと眺めていたいところですが、どんどん進めていきます。</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo09.png?raw=true" alt="PlayAnimation"></br>
+          </br>
+           ちなみに、他モーションでも出来るので、お好きなモーションで踊らせてあげましょう！</br>
+        </p>
+
+        <p>
+          このままでは、再生と同時にアニメーションしてしまうので、アニメーションを制御する必要があります。</br>
+          先ほど作成したAnimator Controllerに、状態遷移を追加していきます。</br>
+          左下のParametersの"+"ボタンを押し、bool型で2つ作成しました。</br>
+          (名前は何でも良いですが、danceとstopにしました)</br>
+        </p>
+        <p>
+          あとは、どんな状態でどこに遷移するのかの追加していきます。</br>
+          Animatorのモーション名で右クリックし、Make Transitionを選択。</br>
+          するとカーソルに矢印がついてくるようになります。</br>
+          あとは他のモーション名の上でクリックで、線を引くことが出来ます。</br>
+          矢印をクリックすると、InspectorのConditionsから遷移条件を指定することが出来ます。</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo10.png?raw=true" alt="Transition State"></br>
+          </br>
+        </p>
+
+        <p>
+          あとは忘れずに、初期状態でダンスしないようにするために、初期状態にしたいモーション名で右クリックし、Set As Defaultで、初期設定を変更しておきます。</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo11.png?raw=true" alt="SetDefault"></br>
+          </br>
+
+          お疲れ様です。</br>
+          これで、UnityでもMMDモデルを読み込み、アニメーションさせることが出来るようになりました。</br>
+        </p>
+        </br>
+
+        <p><a href="http://hisatakasuzuki.github.io/Oculus/">トップに戻る</a></p>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">UnityでOculusとKinectを使った課題 maintained by <a href="https://github.com/YukiHarada">YukiHarada</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
