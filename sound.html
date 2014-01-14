@@ -44,10 +44,10 @@
         </br>
         <h4>・音を鳴らす準備</h4>
         <p>音を鳴らすにはAudio Listener(音を聞き取る側)と、Audio Source(音を鳴らす側)が必要になります。</p>
-        <p>今回は手を叩いた時に、音を鳴らすようにするため、</br>
-           右手または左手にAudio Sourceをつけます。</br>
-           どちらか選択した状態で、メニューからComponent > Audio > Audio Sourceで追加します。</br>
-           <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo13.png?raw=true" alt="selectRightHand">
+        <p>手を叩いた時に、音を鳴らすようにするため、右手または左手にAudio Sourceをつけます。</br>
+           Hierarchyでどちらか選択した状態で、</br>
+           メニューから Component > Audio > Audio Source で追加します。</br>
+           <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo13.png?raw=true" alt="selectRightHand">　　　　
            <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo14.png?raw=true" alt="addAudioSource">
            </br>
         </p>
@@ -56,90 +56,33 @@
            Audio Listenerは、Oculus Rift用カメラのOVR CameraController > CameraRightに初期で入っています。
         </p>
 
-        <p>すると、Assetsにこのようなフォルダが追加されます。</br>
-          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo02.png?raw=true" alt="MMD4Mecanim" style="text-align:center;">
-        </p>
-
         </br>
-        <h4>・MMDモデルを取り込む</h4>
-        <p>今回は東北ずん子の和服バージョンを使います。</br>
-          (Facebookで宣言しちゃったしね！ちゃんと使ったよ！)</br>
+        <h4>・音を鳴らすスクリプトの作成</h4>
+        <p>ここでは音を制御するスクリプトを作成します。</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo15.png?raw=true" alt="soundScript">
           </br>
-          <a href="http://zunko.jp/con_illust.html">東北ずん子公式サイト</a>
-          </br>
-        </p>
-
-        <p>ダウンロードしてきたファイルをUnityにドラッグ＆ドロップ(以下、D＆D)する。</br>
-           しばらくすると、東北ずん子 公式服モデル.MMD4Mecanim.assetが自動生成されました。</br>
-          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo03.png?raw=true" alt="MMD4Mecanim.asset"></br>
-           </br>
-           モーションは<a href="http://www.nicovideo.jp/watch/sm13350648">こちら</a>からお借りしました。</br>
-           同じようにD＆Dし、追加します。</br>
-           その後、東北ずん子 公式服モデル.MMD4Mecanim.assetのInspectorから、</br>
-           VMDという項目にD＆Dします。</br>
-          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo04.png?raw=true" alt="addAnimation"></br>
-          </br>
-          またもや何かが自動生成されました。</br>
-          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo05.png?raw=true" alt="ChangeConversionAnimation"></br>
-          </br>
-          あとは生成されたfbx形式のモデルを、シーン上に配置します。</br>
-          Projectウィンドウから、HierarchyにD＆Dで追加出来ます。</br>
-          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo06.png?raw=true" alt="addMMD"></br>
-          </br>
-          やっと表示出来ました！</br>
-        </p>
-
-        </br>
-        <h4>・実際にアニメーションさせてみる</h4>
-        <p>
-         次に、追加したモデルをアニメーションさせていきます。</br>
+          OnTriggerEnterは物体と接触した時に呼び出されるメソッドです。
+          TriggerとCollisionがありますが、
+          <ul>
+            <li>Trigger・・・センサーのようなもの。物理挙動には影響しない。</li>
+            <li>Collision・・・物体同士が当たった時に呼び出される。</li>
+          </ul>
         </p>
         <p>
-          Projectウィンドウから任意の場所で、右クリックし、Create > Animator Controller で追加します。</br>
-          これはアニメーションを制御するものになります。</br>
-          Hierarchyのモデルをクリックし、InspectorビューのAnimatorの中に先ほど作成したAnimator Controllerを追加します。</br>
-          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo07.png?raw=true" alt="Animator"></br>
-          </br>
+          今回はTriggerを使います。</br>
+          Triggerを使う際には、オブジェクトについているColliderのIs Triggerにチェックを入れます。</br>
+          これでオブジェクト同士は、すり抜けるようになります。</br>
+          また、どちらか一方に Component > Physics > Rigidbody を適用します。</br>
         </p>
-
-        <p>
-          次に、Animator Controllerをダブルクリックし、fbx形式で生成されたモデル内のモーションをD＆Dで追加していきます。</br>
-          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo08.png?raw=true" alt="addMotion"></br>
+       <p>
+          次に、先ほど適用したスクリプトにサウンドを追加します。</br>
+          ここに入れたサウンドが、手を叩いた時に鳴るようになります。</br>
+          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo16.png?raw=true" alt="sound">
           </br>
-          再生すると、動いてくれました！</br>
-          もっと眺めていたいところですが、どんどん進めていきます。</br>
-          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo09.png?raw=true" alt="PlayAnimation"></br>
-          </br>
-           ちなみに、他モーションでも出来るので、お好きなモーションで踊らせてあげましょう！</br>
-        </p>
+       </p>
 
-        <p>
-          このままでは、再生と同時にアニメーションしてしまうので、アニメーションを制御する必要があります。</br>
-          先ほど作成したAnimator Controllerに、状態遷移を追加していきます。</br>
-          左下のParametersの"+"ボタンを押し、bool型で2つ作成しました。</br>
-          (名前は何でも良いですが、danceとstopにしました)</br>
-        </p>
-        <p>
-          あとは、どんな状態でどこに遷移するのかの追加していきます。</br>
-          Animatorのモーション名で右クリックし、Make Transitionを選択。</br>
-          するとカーソルに矢印がついてくるようになります。</br>
-          あとは他のモーション名の上でクリックで、線を引くことが出来ます。</br>
-          矢印をクリックすると、InspectorのConditionsから遷移条件を指定することが出来ます。</br>
-          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo10.png?raw=true" alt="Transition State"></br>
-          </br>
-        </p>
-
-        <p>
-          あとは忘れずに、初期状態でダンスしないようにするために、初期状態にしたいモーション名で右クリックし、Set As Defaultで、初期設定を変更しておきます。</br>
-          <img src="https://github.com/YukiHarada/ZunkoDance/blob/gh-pages/myimages/photo11.png?raw=true" alt="SetDefault"></br>
-          </br>
-
-          お疲れ様です。</br>
-          これで、UnityでもMMDモデルを読み込み、アニメーションさせることが出来るようになりました。</br>
-        </p>
-        </br>
-
-        <p><a href="http://hisatakasuzuki.github.io/Oculus/">トップに戻る</a></p>
+       </br>
+       <p><a href="http://hisatakasuzuki.github.io/Oculus/">トップに戻る</a></p>
 
       </section>
     </div>
